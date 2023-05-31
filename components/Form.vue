@@ -1,6 +1,6 @@
 <template>
   <div>
-    yoyoyoy
+    <FormKit type="text" />
   </div>
 </template>
 
@@ -8,6 +8,6 @@
 
 </script>
 
-<style scoped>
+<style >
 
 </style>

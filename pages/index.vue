@@ -1,6 +1,9 @@
 <template>
   <div>
-    <Home />
+    company info
+    <div>
+      <SectionSummary :fillSection="1" />
+    </div>
   </div>
 </template>
 
