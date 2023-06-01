@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center py-10">
+  <div class="text-center py-10 text-slate-500">
     {{ titlePage }}
   </div>  
 </template>

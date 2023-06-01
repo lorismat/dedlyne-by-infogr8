@@ -1,6 +1,6 @@
 <template>
   <div>
-    partnership
+    <SectionTitle title-page="Partnership" />
     <div>
       <SectionSummary :fillSection="5" />
     </div>
@@ -8,5 +8,10 @@
 </template>
 
 <script setup>
+
+const activePage = useState('activePage');
+onMounted(() => {
+  activePage.value = 5;
+});
 
 </script>
