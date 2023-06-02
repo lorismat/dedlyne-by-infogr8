@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center py-10 text-slate-500">
+  <div class="text-center uppercase py-6 text-greenmedium text-xl">
     {{ titlePage }}
   </div>  
 </template>
@@ -11,7 +11,3 @@ const props = defineProps({
 })
 
 </script>
-
-<style>
-
-</style>

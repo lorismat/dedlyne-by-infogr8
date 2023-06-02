@@ -1,26 +1,30 @@
 <template>
-  <div>
-    <SectionTitle title-page="Company Information" />
+  <div class="">
+    <SectionTitle title-page="Company Details" />
 
     <FormKit
+      incomplete-message=" "
       type="form"
       submit-label="Go to Net Zero"
       :submit-attrs="{
-        inputClass: 'my-input-class',
-        wrapperClass: 'my-wrapper-class',
-        'data-theme': `dark`,
-        help: 'My button help text',
+        inputClass: 'input-button-submit bg-greenmedium',
+        wrapperClass: 'input-wrapper-submit',
+        help: '',
         ignore: false
       }"
        @submit="submitHandler"
     >
       
-      <div class="p-4 grid grid-cols-2 gap-2">
+      <div class="px-12 py-4 grid grid-cols-2 ">
 
         <FormKit
           type="text"
           label="First Name"
           validation="required"
+          placeholder="John"
+          wrapper-class="formkit-wrapper-special"
+          inner-class="formkit-inner-special"
+          label-class="formkit-label-other"
           
         />
 
@@ -28,7 +32,10 @@
           type="text"
           label="Last Name"
           validation="required"
-          
+          placeholder="Doe"
+          inner-class="formkit-inner-special"
+          wrapper-class="formkit-wrapper-special"
+          label-class="formkit-label-other"
         />
 
         <FormKit
@@ -37,6 +44,9 @@
           placeholder="xxx-xxx-xxxx"
           validation="matches:/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/"
           validation-visibility="dirty"
+          inner-class="formkit-inner-special"
+          wrapper-class="formkit-wrapper-special"
+          label-class="formkit-label-other"
         />
 
         <FormKit
@@ -44,32 +54,120 @@
           label="Email Address"
           validation="required|email"
           placeholder="example@gmail.com"
+          inner-class="formkit-inner-special"
+          wrapper-class="formkit-wrapper-special"
+          label-class="formkit-label-other"
+        />
+
+        <FormKit
+          type="text"
+          label="Company"
+          placeholder="Name Corp."
+          validation="required"
+          inner-class="formkit-inner-special"
+          wrapper-class="formkit-wrapper-special"
+          label-class="formkit-label-other"
+        />
+
+        <FormKit
+          type="text"
+          label="Company Number"
+          placeholder="589903097512"
+          validation="length:0,8|matches:/^[0-9]*$/"
+          inner-class="formkit-inner-special"
+          wrapper-class="formkit-wrapper-special"
+          label-class="formkit-label-other"
+        />
+
+        <!-- 
+          validation="required|date_before:2023-01-01"
+        -->
+
+        <FormKit
+          type="date"
+          label="Business Creation Date"
+          validation="required"
+          validation-visibility="dirty"
+          value=""
+          :classes="{
+            input: ''
+          }"
+          inner-class="formkit-inner-special"
+          wrapper-class="formkit-wrapper-special"
+          label-class="formkit-label-other"
+        />
+
+        <FormKit
+          type="text"
+          label="Business Description"
+          validation="required|length:0,300"
+          placeholder="Description."
+          inner-class="formkit-inner-special"
+          wrapper-class="formkit-wrapper-special"
+          label-class="formkit-label-other"
         />
 
         <FormKit
           type="date"
-          value="2011-01-01"
-          label="Business Creation Date"
-          validation="required|date_before:2023-01-01"
-          validation-visibility="dirty"
+          label="Submission Date"
+          validation="required"
+          value=""
+          inner-class="formkit-inner-special"
+          wrapper-class="formkit-wrapper-special"
+          label-class="formkit-label-other"
         />
 
+        <FormKit
+          type="text"
+          label="Post Code"
+          placeholder="38003"
+          validation="matches:/^[0-9]{5}$/"
+          inner-class="formkit-inner-special"
+          wrapper-class="formkit-wrapper-special"
+          label-class="formkit-label-other"
+        />
+
+        <FormKit
+          type="text"
+          label="City/Town"
+          placeholder="Berlin"
+          inner-class="formkit-inner-special"
+          wrapper-class="formkit-wrapper-special"
+          label-class="formkit-label-other"
+        />
+
+        <FormKit
+          type="text"
+          label="House/Flat Number"
+          placeholder="4"
+          validation="length:1,4|matches:/^[0-9]*$/"
+          inner-class="formkit-inner-special"
+          wrapper-class="formkit-wrapper-special"
+          label-class="formkit-label-other"
+        />
+
+      </div>
+
+      <!-- 
+
+      <div class="grid grid-cols-2 ">
         <FormKit
           type="textarea"
           label="Business Description"
-          validation="length:0,300"
-          rows="6"
+          validation="required|length:0,300"
+          rows="2"
           placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          help="Max 300 characters."
+          help=""
+          :wrapper-class="{
+            'textarea-wrapper': true,
+          }"
         />
+      
+        <div></div>
 
-        <FormKit
-          type="date"
-          value="2023-01-01"
-          label="Submission Date"
-          validation="required"
-        />
+      </div>
 
+      <div class="px-12 py-4 grid grid-cols-2 ">
         <FormKit
           type="text"
           label="Post Code"
@@ -81,7 +179,6 @@
           type="text"
           label="City/Town"
           placeholder="Berlin"
-          validation="required"
         />
 
         <FormKit
@@ -90,17 +187,28 @@
           placeholder="4"
           validation="length:1,4|matches:/^[0-9]*$/"
         />
+
       </div>
+
+      -->
+      
 
     </FormKit>
 
     <div>
       <SectionSummary :fillSection="1" />
     </div>
+
   </div>
 </template>
 
 <script setup>
+import { createInput } from '@formkit/vue'
+import RadioComponent from '~/components/RadioComponent.vue'
+
+// importing custom input
+const values = ref({})
+const radioInput = createInput(RadioComponent)
 
 // https://formkit.com/inputs/form
 
@@ -110,27 +218,10 @@ onMounted(() => {
 });
 
 const submitted = ref(false)
-
 const submitHandler = async () => {
-  console.log('submit click')
-  // Let's pretend this is an ajax request:
   await new Promise((r) => setTimeout(r, 1000))
   submitted.value = true
-  console.log('submitted')
-
   await navigateTo('/net-zero')
 }
 
-
 </script>
-
-<style>
-.formkit-wrapper { 
-  display: flex;
-  align-content: center;
-  align-items: baseline;
- }
-.formkit-label {
-  padding: 10px;
-}
-</style>

@@ -10,3 +10,4 @@
 - Page 2 test
 - Design of one page
 - Set up the gauge view
+- Store the recorded information
