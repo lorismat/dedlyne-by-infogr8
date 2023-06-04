@@ -1,0 +1,217 @@
+:root {
+  --tw-ring-color: green !important;
+}
+
+.text-over {
+  color: #9ca3af !important;
+}
+
+.img {
+  max-width: 160px;
+}
+
+.text-red-500 {
+  color: #E86D84;
+}
+
+.placeholder-gray-400 {
+  color: #9ca3af;
+}
+
+.text-gray-700 {
+  color: #111;
+}
+
+.textarea-wrapper {
+  justify-content: flex-end;
+}
+
+textarea {
+  resize: none;
+}
+
+.input-wrapper-submit {
+  justify-content: center;
+  align-items:center;
+  display: flex;
+  gap:40px;
+}
+
+.formkit-messages {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.input-button-submit {
+  border-radius: 14px;
+}
+
+.formkit-inner-special {
+  width: 250px;
+  border-radius: 14px;
+  border: 0.5px solid #629642;
+  outline: none;
+}
+
+.formkit-inner-percentage {
+  width: 100px;
+  border-radius: 14px;
+  border: 0.5px solid #629642;
+  outline: none;
+  margin:10px 10px;
+}
+
+.formkit-inner-salary {
+  width: 200px;
+  border-radius: 14px;
+  border: 0.5px solid #629642;
+  outline: none;
+  margin:10px 10px;
+}
+
+
+.formkit-label-percentage {
+  padding: 0px 20px;
+  font-weight:400;
+  color: #333;
+}
+.formkit-inner-select {
+  margin:10px 20px;
+  width: 250px;
+  border-radius: 14px;
+  border: 0.5px solid #629642;
+  outline: none;
+}
+
+.formkit-inner-radio {
+}
+
+.formkit-label-other-select {
+  padding: 0px 20px;
+  font-weight:400;
+  color: #333;
+}
+
+.formkit-options-radio {
+  padding: 10px 0px;
+  display: inline-flex;
+}
+
+.formkit-wrapper-special { 
+  display: flex;
+  align-content: center;
+  align-items: baseline;
+  justify-content: flex-end;
+}
+
+.formkit-wrapper-special-date { 
+  display: block;
+}
+
+.formkit-wrapper-special-select { 
+  display: block;
+}
+
+.formkit-wrapper-special-percentage {
+  display: block;
+  margin: 0px 10px;
+}
+
+.formkit-help-special-date {
+  font-style: italic;
+  text-align: left !important;
+  padding: 0px 20px;
+}
+
+.formkit-help-percentage {
+  font-style: italic;
+  text-align: left !important;
+  padding: 0px 20px;
+}
+
+.formkit-help-special {
+  font-style: italic;
+  text-align: left;
+  padding: 0px 20px;
+}
+
+.formkit-help {
+  font-style: italic;
+  text-align: right;
+}
+
+.formkit-messages-special-date {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0px 20px;
+}
+
+.formkit-wrapper-radio { 
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0px 0px 0px 10px;
+}
+
+.formkit-fieldset-radio {
+  border: none !important;
+  display: inline-flex;
+}
+
+.formkit-fieldset-radio-wide {
+  border: none !important;
+  display: inline-flex;
+  width:800px !important;
+  max-width: 800px;
+}
+
+.ring-1 {
+  --tw-ring-offset-shadow: none !important;
+  --tw-ring-shadow: none !important;
+  box-shadow:none !important;
+}
+
+.formkit-label-radio {
+  padding: 10px 0px;
+  font-weight:400;
+  color: #333;
+}
+
+.formkit-decorator-radio {
+  outline: 1px solid #629642;
+  padding: 0px 10px;
+  background: #fff;
+  color: #fff;
+}
+
+[data-checked="true"] {
+  color: #629642 !important;
+}
+
+
+.formkit-label-other {
+  padding: 0px 10px;
+  font-weight:400;
+  color: #333;
+}
+
+.ring-blue-500 {
+  background-color: #629642 !important;
+  color: #629642 !important;
+  fill: #629642 !important;
+  stroke: #629642 !important;
+}
+
+.text-blue-500 {
+  background-color: #629642 !important;
+  color: #629642 !important;
+  fill: #629642 !important;
+  stroke: #629642 !important;
+}
+
+.peer:checked ~ .peer-checked\:text-blue-500 {
+  --tw-text-opacity: 1;
+  color: #629642;
+  color: #629642;
+}

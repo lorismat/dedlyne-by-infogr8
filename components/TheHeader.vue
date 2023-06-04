@@ -1,6 +1,6 @@
 <template>
-  <header class="pb-4">
-    <nav>
+  <header :class="activePage == 0 ? 'hidden' : ''">
+    <nav class="pb-4">
       <ul class="grid justify-items-stretch grid-cols-5 text-center">
         <!-- 
           <li :class="activePage == 1 ? activePageClass : basicPageClass"><NuxtLink class="p-2" to="/">Company Information</NuxtLink></li>
@@ -18,12 +18,10 @@
 <script setup>
 
 const activePageClass = "border-b-2 text-white bg-greenmedium border-greenmedium hover:transparent";
-// const basicPageClass = "border-b-2 border-transparent hover:border-black cursor-pointer";
 const basicPageClass = "border-b-2 text-greenmedium border-greenmedium";
 
 const activePage = useState('activePage', () => 1 );
 watch(() => activePage.value, (newValue, oldValue) => {
-  console.log(newValue);
 })
 
 </script>

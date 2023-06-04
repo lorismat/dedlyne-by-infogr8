@@ -1,6 +1,126 @@
 <template>
   <div>
     <SectionTitle title-page="Inclusion" />
+
+
+    <FormKit
+      incomplete-message=" "
+      type="form"
+      submit-label="Go to Partnership"
+      :submit-attrs="{
+        inputClass: 'input-button-submit bg-greenmedium',
+        wrapperClass: 'input-wrapper-submit',
+        help: '',
+        ignore: false
+      }"
+       @submit="submitHandler"
+    >
+
+
+    <div class="px-12 py-4 grid grid-cols-1 ">
+
+      <FormKit
+        help=" "
+        help-class="formkit-help-percentage"
+        placeholder="Description."
+        inner-class="formkit-inner-salary"
+        wrapper-class="formkit-wrapper-special-percentage"
+        label-class="formkit-label-other"
+        type="number"
+        label="How much does your highest paid employee earn per annum (including overtime and bonuses)? "
+        value="0"
+        step="1"
+        validation="min:0|required"
+      />
+
+
+      <FormKit
+        help=" "
+        help-class="formkit-help-percentage"
+        placeholder="Description."
+        inner-class="formkit-inner-salary"
+        wrapper-class="formkit-wrapper-special-percentage"
+        label-class="formkit-label-other"
+        type="number"
+        label="How much does your lowest paid employee earn per annum (including overtime and bonuses)?"
+        value="0"
+        step="1"
+        validation="min:0|required"
+      />
+
+    </div>
+
+    <div class="px-12 py-4 grid grid-cols-2 ">
+
+      <FormKit
+        type="radio"
+        label="Do you have an Anti-Slavery policy?"
+        :options="{
+          yes: 'Yes',
+          no: 'No',
+        }"
+        :value="'no'"
+        inner-class="formkit-inner-radio"
+        wrapper-class="formkit-wrapper-radio"
+        fieldset-class="formkit-fieldset-radio"
+        options-class="formkit-options-radio"
+        legend-class="formkit-label-other"
+        decorator-class="formkit-decorator-radio"
+      />
+
+      <FormKit
+        type="radio"
+        label="Can you provide your Anti-Slavery statement? (If Yes) "
+        :options="{
+          yes: 'Yes',
+          no: 'No',
+        }"
+        :value="'no'"
+        inner-class="formkit-inner-radio"
+        wrapper-class="formkit-wrapper-radio"
+        fieldset-class="formkit-fieldset-radio"
+        options-class="formkit-options-radio"
+        legend-class="formkit-label-other"
+        decorator-class="formkit-decorator-radio"
+      />
+
+      <FormKit
+        type="radio"
+        label="Are you a Living Wage Employer?"
+        :options="{
+          yes: 'Yes',
+          no: 'No',
+        }"
+        :value="'no'"
+        inner-class="formkit-inner-radio"
+        wrapper-class="formkit-wrapper-radio"
+        fieldset-class="formkit-fieldset-radio"
+        options-class="formkit-options-radio"
+        legend-class="formkit-label-other"
+        decorator-class="formkit-decorator-radio"
+      />
+
+      <FormKit
+        type="radio"
+        label="Can you provide evidence of your Living Wage Employer status? (If yes to the above)"
+        :options="{
+          yes: 'Yes',
+          no: 'No',
+        }"
+        :value="'no'"
+        inner-class="formkit-inner-radio"
+        wrapper-class="formkit-wrapper-radio"
+        fieldset-class="formkit-fieldset-radio"
+        options-class="formkit-options-radio"
+        legend-class="formkit-label-other"
+        decorator-class="formkit-decorator-radio"
+      />
+    </div>
+
+
+    </FormKit>
+
+
     <div>
       <SectionSummary :fillSection="4"/>
     </div>
@@ -10,9 +130,23 @@
 
 <script setup>
 
+const btnString = `
+  <a href='/equality' class='underline p-2 text-greenmedium hover:no-underline'>Previous</a>
+`
+
 const activePage = useState('activePage');
 onMounted(() => {
   activePage.value = 4;
+
+  const formkitWrapper = document.querySelector('.input-wrapper-submit');
+  formkitWrapper.insertAdjacentHTML('afterbegin', btnString);
 });
+
+const submitted = ref(false)
+const submitHandler = async () => {
+  await new Promise((r) => setTimeout(r, 1000))
+  submitted.value = true
+  await navigateTo('/partnership')
+}
 
 </script>

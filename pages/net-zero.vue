@@ -24,6 +24,7 @@
             yes: 'Yes',
             no: 'No',
           }"
+          :value="'no'"
           inner-class="formkit-inner-radio"
           wrapper-class="formkit-wrapper-radio"
           fieldset-class="formkit-fieldset-radio"
@@ -36,14 +37,17 @@
           type="date"
           label="What is the Target Date?"
           validation="required"
+          help="* required"
+          
           validation-visibility="dirty"
           value=""
           :classes="{
             input: ''
           }"
-          inner-class="formkit-inner-special"
+          help-class="formkit-help-special-date"
+          inner-class="formkit-inner-select"
           wrapper-class="formkit-wrapper-special-date"
-          label-class="formkit-label-other"
+          label-class="formkit-label-other-select"
           messages-class="formkit-messages-special-date"
         />
 
@@ -55,6 +59,7 @@
             yes: 'Yes',
             no: 'No',
           }"
+          :value="'no'"
           inner-class="formkit-inner-radio"
           wrapper-class="formkit-wrapper-radio"
           fieldset-class="formkit-fieldset-radio"
@@ -70,6 +75,7 @@
             yes: 'Yes',
             no: 'No',
           }"
+          :value="'no'"
           inner-class="formkit-inner-radio"
           wrapper-class="formkit-wrapper-radio"
           fieldset-class="formkit-fieldset-radio"
@@ -85,6 +91,7 @@
             yes: 'Yes',
             no: 'No',
           }"
+          :value="'no'"
           inner-class="formkit-inner-radio"
           wrapper-class="formkit-wrapper-radio"
           fieldset-class="formkit-fieldset-radio"
@@ -100,6 +107,7 @@
             yes: 'Yes',
             no: 'No',
           }"
+          :value="'no'"
           inner-class="formkit-inner-radio"
           wrapper-class="formkit-wrapper-radio"
           fieldset-class="formkit-fieldset-radio"
@@ -115,6 +123,7 @@
             yes: 'Yes',
             no: 'No',
           }"
+          :value="'no'"
           inner-class="formkit-inner-radio"
           wrapper-class="formkit-wrapper-radio"
           fieldset-class="formkit-fieldset-radio"
@@ -130,6 +139,7 @@
             yes: 'Yes',
             no: 'No',
           }"
+          :value="'no'"
           inner-class="formkit-inner-radio"
           wrapper-class="formkit-wrapper-radio"
           fieldset-class="formkit-fieldset-radio"
@@ -145,6 +155,7 @@
             yes: 'Yes',
             no: 'No',
           }"
+          :value="'no'"
           inner-class="formkit-inner-radio"
           wrapper-class="formkit-wrapper-radio"
           fieldset-class="formkit-fieldset-radio"
@@ -160,12 +171,31 @@
             yes: 'Yes',
             no: 'No',
           }"
+          :value="'no'"
           inner-class="formkit-inner-radio"
           wrapper-class="formkit-wrapper-radio"
           fieldset-class="formkit-fieldset-radio"
           options-class="formkit-options-radio"
           legend-class="formkit-label-other"
           decorator-class="formkit-decorator-radio"
+        />
+
+        <FormKit
+          type="select"
+          label="Can you provide evidence of measurement or accreditation of emissions from one of the following?"
+          :options="[
+            'spherics.io',
+            'normative.io',
+            'sage.com',
+            'quentic.com',
+            'planetmark.com',
+            'ghgprotocol.com',
+            'ecologi.com',
+            'sciencebasedtargets.org',
+          ]"
+          label-class="formkit-label-other-select"
+          inner-class="formkit-inner-select"
+          wrapper-class="formkit-wrapper-special-select"
         />
 
     </div>
@@ -175,19 +205,32 @@
     <div>
       <SectionSummary :fillSection="2" />
     </div>
+    
   </div>
 </template>
 
 <script setup>
 
+const formObject = useState('activeformObjectPage');
+console.log(formObject.value.companyName);
+
+const btnString = `
+    <div id='toIndex' class='underline p-2 text-greenmedium hover:no-underline'>Previous</div>
+`
 const activePage = useState('activePage');
 onMounted(() => {
   activePage.value = 2;
+  const formkitWrapper = document.querySelector('.input-wrapper-submit');
+  formkitWrapper.insertAdjacentHTML('afterbegin', btnString);
+  document.getElementById ("toIndex").addEventListener ("click", myFunction, false);
+  async function myFunction() {
+    await navigateTo('/')
+  }
 });
 
 const submitted = ref(false)
 const submitHandler = async () => {
-  await new Promise((r) => setTimeout(r, 1000))
+  await new Promise((r) => setTimeout(r, 600))
   submitted.value = true
   await navigateTo('/equality')
 }

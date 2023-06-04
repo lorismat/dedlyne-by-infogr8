@@ -22,16 +22,19 @@
           label="First Name"
           validation="required"
           placeholder="John"
+          help="* required"
+          help-class="formkit-help"
           wrapper-class="formkit-wrapper-special"
           inner-class="formkit-inner-special"
           label-class="formkit-label-other"
-          
         />
 
         <FormKit
           type="text"
           label="Last Name"
           validation="required"
+          help="* required"
+          help-class="formkit-help"
           placeholder="Doe"
           inner-class="formkit-inner-special"
           wrapper-class="formkit-wrapper-special"
@@ -52,6 +55,8 @@
         <FormKit
           type="email"
           label="Email Address"
+          help="* required"
+          help-class="formkit-help"
           validation="required|email"
           placeholder="example@gmail.com"
           inner-class="formkit-inner-special"
@@ -60,10 +65,13 @@
         />
 
         <FormKit
+          v-model="companyName"
           type="text"
           label="Company"
           placeholder="Name Corp."
           validation="required"
+          help="* required"
+          help-class="formkit-help"
           inner-class="formkit-inner-special"
           wrapper-class="formkit-wrapper-special"
           label-class="formkit-label-other"
@@ -87,6 +95,8 @@
           type="date"
           label="Business Creation Date"
           validation="required"
+          help="* required"
+          help-class="formkit-help"
           validation-visibility="dirty"
           value=""
           :classes="{
@@ -101,6 +111,8 @@
           type="text"
           label="Business Description"
           validation="required|length:0,300"
+          help="* required"
+          help-class="formkit-help"
           placeholder="Description."
           inner-class="formkit-inner-special"
           wrapper-class="formkit-wrapper-special"
@@ -111,6 +123,8 @@
           type="date"
           label="Submission Date"
           validation="required"
+          help="* required"
+          help-class="formkit-help"
           value=""
           inner-class="formkit-inner-special"
           wrapper-class="formkit-wrapper-special"
@@ -205,6 +219,17 @@
 <script setup>
 import { createInput } from '@formkit/vue'
 import RadioComponent from '~/components/RadioComponent.vue'
+
+const companyName = ref('');
+
+const formObject = useState('activeformObjectPage');
+
+console.log(formObject.value.companyName);
+
+watch(() => companyName.value, (newValue, oldValue) => {
+  formObject.value.companyName = companyName;
+  console.log(formObject.value.companyName);
+})
 
 // importing custom input
 const values = ref({})

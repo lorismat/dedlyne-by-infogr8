@@ -4,6 +4,10 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@formkit/nuxt'
+  ],
+
+  css: [
+    '@/assets/css/main.css',
   ]
 
 })
