@@ -20,6 +20,7 @@
     <div class="px-12 py-4 grid grid-cols-1 ">
 
       <FormKit
+      v-model="inclusionHighest"
         help=" "
         help-class="formkit-help-percentage"
         placeholder="Description."
@@ -35,6 +36,7 @@
 
 
       <FormKit
+      v-model="inclusionLowest"
         help=" "
         help-class="formkit-help-percentage"
         placeholder="Description."
@@ -53,6 +55,7 @@
     <div class="px-12 py-4 grid grid-cols-2 ">
 
       <FormKit
+      v-model="inclusionQ1"
         type="radio"
         label="Do you have an Anti-Slavery policy?"
         :options="{
@@ -69,6 +72,7 @@
       />
 
       <FormKit
+      v-model="inclusionQ2"
         type="radio"
         label="Can you provide your Anti-Slavery statement? (If Yes) "
         :options="{
@@ -85,6 +89,7 @@
       />
 
       <FormKit
+      v-model="inclusionQ3"
         type="radio"
         label="Are you a Living Wage Employer?"
         :options="{
@@ -101,6 +106,7 @@
       />
 
       <FormKit
+      v-model="inclusionQ4"
         type="radio"
         label="Can you provide evidence of your Living Wage Employer status? (If yes to the above)"
         :options="{
@@ -130,9 +136,19 @@
 
 <script setup>
 
+const formObject = useState('activeformObjectPage');
+
+
 const btnString = `
-  <a href='/equality' class='underline p-2 text-greenmedium hover:no-underline'>Previous</a>
+    <div id='toEquality' class='cursor-pointer underline p-2 text-greenmedium hover:no-underline'>Previous</div>
 `
+
+const inclusionHighest = ref('0');
+const inclusionLowest = ref('0');
+const inclusionQ1 = ref('no');
+const inclusionQ2 = ref('no');
+const inclusionQ3 = ref('no');
+const inclusionQ4 = ref('no');
 
 const activePage = useState('activePage');
 onMounted(() => {
@@ -140,10 +156,24 @@ onMounted(() => {
 
   const formkitWrapper = document.querySelector('.input-wrapper-submit');
   formkitWrapper.insertAdjacentHTML('afterbegin', btnString);
+
+  document.getElementById ("toEquality").addEventListener ("click", myFunction, false);
+  async function myFunction() {
+    await navigateTo('/equality')
+  }
 });
 
 const submitted = ref(false)
 const submitHandler = async () => {
+
+  // update all values
+  formObject.value.inclusionHighest = inclusionHighest;
+  formObject.value.inclusionLowest = inclusionLowest;
+  formObject.value.inclusionQ1 = inclusionQ1;
+  formObject.value.inclusionQ2 = inclusionQ2;
+  formObject.value.inclusionQ3 = inclusionQ3;
+  formObject.value.inclusionQ4 = inclusionQ4;
+
   await new Promise((r) => setTimeout(r, 1000))
   submitted.value = true
   await navigateTo('/partnership')

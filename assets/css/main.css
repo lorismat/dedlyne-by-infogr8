@@ -215,3 +215,13 @@ textarea {
   color: #629642;
   color: #629642;
 }
+
+.plot {
+  width:400px;
+  height:400px;
+}
+
+.plot-big {
+  width:400px;
+  height:400px;
+}

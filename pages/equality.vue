@@ -18,6 +18,7 @@
     <div class="px-12 py-4 grid grid-cols-2 ">
 
       <FormKit
+      v-model="equalityPercentage"
         help=""
         help-class="formkit-help-percentage"
         placeholder="Description."
@@ -34,6 +35,7 @@
       <div></div>
 
       <FormKit
+      v-model="equalityQ1"
         type="radio"
         label="Do you provide Equality and Inclusion training for your staff?"
         :options="{
@@ -50,6 +52,7 @@
       />
 
       <FormKit
+      v-model="equalityQ2"
         type="radio"
         label="Do you have a Gender Pay Gap policy?"
         :options="{
@@ -77,19 +80,37 @@
 
 <script setup>
 
+const formObject = useState('activeformObjectPage');
+
 const btnString = `
-  <a href='/net-zero' class='underline p-2 text-greenmedium hover:no-underline'>Previous</a>
+  <div id='toNetZero' class='cursor-pointer underline p-2 text-greenmedium hover:no-underline'>Previous</div>
 `
+
+const equalityPercentage = ref('50');
+const equalityQ1 = ref('no');
+const equalityQ2 = ref('no');
 
 const activePage = useState('activePage');
 onMounted(() => {
   activePage.value = 3;
   const formkitWrapper = document.querySelector('.input-wrapper-submit');
   formkitWrapper.insertAdjacentHTML('afterbegin', btnString);
+
+  document.getElementById ("toNetZero").addEventListener ("click", myFunction, false);
+  async function myFunction() {
+    await navigateTo('/net-zero')
+  }
+
 });
 
 const submitted = ref(false)
 const submitHandler = async () => {
+
+  // update all values
+  formObject.value.equalityPercentage = equalityPercentage;
+  formObject.value.equalityQ1 = equalityQ1;
+  formObject.value.equalityQ2 = equalityQ2;
+
   await new Promise((r) => setTimeout(r, 1000))
   submitted.value = true
   await navigateTo('/inclusion')

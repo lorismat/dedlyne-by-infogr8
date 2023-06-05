@@ -18,6 +18,7 @@
       <div class="px-12 py-4 grid grid-cols-2 ">
 
         <FormKit
+          v-model="firstName"
           type="text"
           label="First Name"
           validation="required"
@@ -30,6 +31,7 @@
         />
 
         <FormKit
+          v-model="lastName"
           type="text"
           label="Last Name"
           validation="required"
@@ -42,6 +44,7 @@
         />
 
         <FormKit
+          v-model="telephone"
           type="tel"
           label="Telephone"
           placeholder="xxx-xxx-xxxx"
@@ -53,6 +56,7 @@
         />
 
         <FormKit
+          v-model="email"
           type="email"
           label="Email Address"
           help="* required"
@@ -78,6 +82,7 @@
         />
 
         <FormKit
+          v-model="companyNumber"
           type="text"
           label="Company Number"
           placeholder="589903097512"
@@ -92,6 +97,7 @@
         -->
 
         <FormKit
+          v-model="businessCreationDate"
           type="date"
           label="Business Creation Date"
           validation="required"
@@ -108,6 +114,7 @@
         />
 
         <FormKit
+          v-model="businessDescription"
           type="text"
           label="Business Description"
           validation="required|length:0,300"
@@ -120,6 +127,7 @@
         />
 
         <FormKit
+          v-model="submissionDate"
           type="date"
           label="Submission Date"
           validation="required"
@@ -132,6 +140,7 @@
         />
 
         <FormKit
+          v-model="postCode"
           type="text"
           label="Post Code"
           placeholder="38003"
@@ -142,6 +151,7 @@
         />
 
         <FormKit
+          v-model="city"
           type="text"
           label="City/Town"
           placeholder="Berlin"
@@ -151,6 +161,7 @@
         />
 
         <FormKit
+          v-model="flatNumber"
           type="text"
           label="House/Flat Number"
           placeholder="4"
@@ -161,52 +172,7 @@
         />
 
       </div>
-
-      <!-- 
-
-      <div class="grid grid-cols-2 ">
-        <FormKit
-          type="textarea"
-          label="Business Description"
-          validation="required|length:0,300"
-          rows="2"
-          placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          help=""
-          :wrapper-class="{
-            'textarea-wrapper': true,
-          }"
-        />
       
-        <div></div>
-
-      </div>
-
-      <div class="px-12 py-4 grid grid-cols-2 ">
-        <FormKit
-          type="text"
-          label="Post Code"
-          placeholder="38003"
-          validation="matches:/^[0-9]{5}$/"
-        />
-
-        <FormKit
-          type="text"
-          label="City/Town"
-          placeholder="Berlin"
-        />
-
-        <FormKit
-          type="text"
-          label="House/Flat Number"
-          placeholder="4"
-          validation="length:1,4|matches:/^[0-9]*$/"
-        />
-
-      </div>
-
-      -->
-      
-
     </FormKit>
 
     <div>
@@ -220,22 +186,20 @@
 import { createInput } from '@formkit/vue'
 import RadioComponent from '~/components/RadioComponent.vue'
 
+const firstName = ref('');
+const lastName = ref('');
+const telephone = ref('');
+const email = ref('');
 const companyName = ref('');
+const companyNumber = ref('');
+const businessCreationDate = ref('');
+const businessDescription = ref('');
+const submissionDate = ref('');
+const postCode = ref('');
+const city = ref('');
+const flatNumber = ref('');
 
 const formObject = useState('activeformObjectPage');
-
-console.log(formObject.value.companyName);
-
-watch(() => companyName.value, (newValue, oldValue) => {
-  formObject.value.companyName = companyName;
-  console.log(formObject.value.companyName);
-})
-
-// importing custom input
-const values = ref({})
-const radioInput = createInput(RadioComponent)
-
-// https://formkit.com/inputs/form
 
 const activePage = useState('activePage');
 onMounted(() => {
@@ -244,8 +208,23 @@ onMounted(() => {
 
 const submitted = ref(false)
 const submitHandler = async () => {
+
+  // update all values
+  formObject.value.firstName = firstName;
+  formObject.value.lastName = lastName;
+  formObject.value.telephone = telephone;
+  formObject.value.email = email;
+  formObject.value.companyName = companyName;
+  formObject.value.companyNumber = companyNumber;
+  formObject.value.businessCreationDate = businessCreationDate;
+  formObject.value.businessDescription = businessDescription;
+  formObject.value.submissionDate = submissionDate;
+  formObject.value.postCode = postCode;
+  formObject.value.city = city;
+  formObject.value.flatNumber = flatNumber;
+
   await new Promise((r) => setTimeout(r, 1000))
-  submitted.value = true
+  submitted.value = true;
   await navigateTo('/net-zero')
 }
 
