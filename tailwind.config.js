@@ -15,7 +15,7 @@ module.exports = {
         'green': '#92D1A4',
         'greenmedium': '#629642',
         'primarygreen': '#587B47',
-        'red': '#E86D84',
+        'red': '#D33257',
         'orange': '#F5C745',
         'backgroundgray': '#F6FBFC',
         'bodybackgroundgray': '#fafafa',

@@ -3,58 +3,105 @@
     <SectionTitle title-page="Confirmation" />
   </div>
 
-  <div class="mx-20 mb-20">
-    <div class="w-full shadow-md  border-greenmedium border rounded-lg">
-      <div class="uppercase text-center bg-greenmedium rounded-t-md text-white p-4">
-        details
-      </div>
-      <div class="my-2">
-        <div v-for="el in arrToShow" class="w-full flex justify-between px-4 py-2 border-b border-gray-300">
-          <div class="text-gray-600 capitalize">
-            {{ el.field }}
-          </div>
-          <div class="font-bold">
-            {{ el.value }}
+  <div class="grid grid-cols-3">
+
+    <div class="mx-2 col-span-1">
+      <div class="w-full shadow-md  border-greenmedium border rounded-lg">
+        <div class="uppercase text-center bg-greenmedium rounded-t-md text-white p-2">
+          details
+        </div>
+        <div class="my-2">
+          <div v-for="el in arrToShow" class="w-full flex justify-between px-1 py-1 border-b border-gray-300">
+            <div class="text-gray-400 capitalize text-sm w-40">
+              {{ el.field }}
+            </div>
+            <div class="text-gray-900 text-sm w-40">
+              {{ el.value }}
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="mx-20">
-    <div class="w-full shadow-md  border-greenmedium border rounded-lg">
-      <div class="text-md text-center bg-greenmedium rounded-t-md text-white p-4 flex justify-between">
-        <div class="uppercase">
-          Results
+    <div class="mx-2 col-span-2">
+      <div class="w-full shadow-md  border-greenmedium border rounded-lg">
+        <div class="text-md text-center bg-greenmedium rounded-t-md text-white p-2 flex justify-between">
+          <div class="uppercase">
+            Results
+          </div>
+          <div>
+            Submitted: <span class="font-bold text-sm">{{ todayDate }}</span>
+          </div>
         </div>
-        <div>
-          Submitted: <span class="font-bold text-sm">{{ todayDate }}</span>
+        <!--
+
+          <div class="p-10 text-gray-500">
+          Description Results.
         </div>
+        -->
+        
+
+        <div class="py-2 text-gray-500">
+          
+          <div class="flex justify-center">
+            <div>
+              <div class="flex justify-center gap-4 items-baseline p-4">
+                <div class="capitalize text-lg">Overall</div>
+                <div class="px-2 rounded-md text-white bg-green text-lg">2022</div>
+              </div>
+              <div id="plot-overall" class="plot-big">
+              </div>
+            </div>
+            
+          </div>
+
+          <div class="grid grid-cols-2 justify-items-center">
+            
+            <div>
+              <div class="flex justify-center gap-4 items-baseline p-4">
+                <div class="capitalize text-lg ">Net Zero</div>
+                <div class="px-2 rounded-md text-white bg-orange text-lg">2047</div>
+              </div>
+              <div id="plot-net-zero" class="plot">
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-center gap-4 items-baseline p-4">
+                <div class="capitalize text-lg ">Inclusion</div>
+                <div class="px-2 rounded-md text-white bg-red text-lg">2051</div>
+              </div>
+              <div id="plot-inclusion" class="plot">
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-center gap-4 items-baseline p-4">
+                <div class="capitalize text-lg ">Societal</div>
+                <div class="px-2 rounded-md text-white bg-green text-lg">2029</div>
+              </div>
+              <div id="plot-equality" class="plot">
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-center gap-4 items-baseline p-4">
+                <div class="capitalize text-lg ">Partnership</div>
+                <div class="px-2 rounded-md text-white bg-red text-lg">2087</div>
+              </div>
+              <div id="plot-partnership" class="plot">
+              </div>
+            </div>
+
+            
+          
+          </div>
+        </div>
+
+
       </div>
-      <div class="p-10 text-gray-500">
-        Description Results.
-      </div>
-
-      <div class="py-2 text-gray-500">
-        <div class="flex justify-center">
-          <div id="plot-overall" class="plot-big">
-          </div>
-        </div>
-
-        <div class="grid grid-cols-2 gap-2 justify-items-center">
-          <div id="plot-net-zero" class="plot">
-          </div>
-          <div id="plot-inclusion" class="plot">
-          </div>
-          <div id="plot-equality" class="plot">
-          </div>
-          <div id="plot-partnership" class="plot">
-          </div>
-        </div>
-      </div>
-
-
     </div>
+
   </div>
 
   <div id='toPartnership' class='py-12 text-center cursor-pointer underline p-2 text-greenmedium hover:no-underline'>
@@ -142,7 +189,7 @@ const arrToShow = [
   },
   {
     "field": 'business description',
-    "value": formObject.value.description
+    "value": formObject.value.businessDescription
   },
   {
     "field": 'submission date',
@@ -170,10 +217,10 @@ onMounted(() => {
     await navigateTo('/partnership')
   }
 
-  drawGraph('plot-overall', 'Overall', 2049);
-  drawGraph('plot-net-zero', 'Net Zero Dedlyne', 2055);
-  drawGraph('plot-inclusion', 'Inclusion Dedlyne', 2049);
-  drawGraph('plot-equality', 'Societal Dedlyne', 2055);
-  drawGraph('plot-partnership', 'Partnership Dedlyne', 2104);
+  drawGraph('plot-overall', 'Overall', 2022, '#92D1A4');
+  drawGraph('plot-net-zero', 'Net Zero Dedlyne', 2047, '#F5C745');
+  drawGraph('plot-inclusion', 'Inclusion Dedlyne', 2051, '#D33257'); // red > 2050
+  drawGraph('plot-equality', 'Societal Dedlyne', 2029, '#92D1A4');
+  drawGraph('plot-partnership', 'Partnership Dedlyne', 2087, '#D33257');
 });
 </script>
