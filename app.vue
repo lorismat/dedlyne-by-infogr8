@@ -18,8 +18,6 @@
 <script setup>
 const formObject = useState('activeformObjectPage', () => {
   const obj = {
-    'companyName': 'Init',
-    'companyNumber': 'Init'
   }
   return obj
 });

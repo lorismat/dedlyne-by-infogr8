@@ -48,11 +48,14 @@
           type="tel"
           label="Telephone"
           placeholder="xxx-xxx-xxxx"
-          validation="matches:/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/"
+          validation="matches:/^[0-9\s\-\+]*$/"
           validation-visibility="dirty"
           inner-class="formkit-inner-special"
           wrapper-class="formkit-wrapper-special"
           label-class="formkit-label-other"
+          :validation-messages="{
+            matches: 'Only numbers, spaces, + and - are allowed',
+          }"
         />
 
         <FormKit
@@ -144,10 +147,13 @@
           type="text"
           label="Post Code"
           placeholder="38003"
-          validation="matches:/^[0-9]{5}$/"
+          validation="matches:/^[0-9\s]*$/"
           inner-class="formkit-inner-special"
           wrapper-class="formkit-wrapper-special"
           label-class="formkit-label-other"
+          :validation-messages="{
+            matches: 'Only numbers and spaces are allowed',
+          }"
         />
 
         <FormKit
