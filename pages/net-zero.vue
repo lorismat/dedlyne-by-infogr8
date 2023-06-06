@@ -35,9 +35,24 @@
       />
 
         <FormKit
+          v-model="netZeroTargetDate"
+          type="text"
+          label="What is the Target Date? (Year)"
+          placeholder="2029"
+          validation="required|length:4|matches:/^[0-9\s]*$/"
+          inner-class="formkit-inner-special formkit-message-spec"
+          wrapper-class="formkit-fieldset"
+          label-class="formkit-label-other"
+
+          
+          
+        />
+
+        <!-- 
+          <FormKit
           v-model="netZeroTargetDate" 
           type="date"
-          label="What is the Target Date?"
+          label="What is the Target Date? (Year)"
           validation="required"
           help="* required"
           
@@ -52,6 +67,10 @@
           label-class="formkit-label-other-select"
           messages-class="formkit-messages-special-date"
         />
+        -->
+
+
+        
 
 
         <FormKit
